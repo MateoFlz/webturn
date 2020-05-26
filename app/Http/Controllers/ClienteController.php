@@ -24,8 +24,16 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $cliente = Cliente::all();
+        $cliente = Cliente::paginate(5);
         return view('clients.index', compact('cliente'));
+    }
+
+    public function print()
+    {
+        $cliente = Cliente::all();
+        $pdf = \PDF::loadView('clients.reportclientes', compact('cliente'));
+        return $pdf->download('Clientes.pdf');
+
     }
 
     /**
@@ -79,6 +87,7 @@ class ClienteController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
             'telefono' => $request['telefono'],
+            'state' => '1',
         ]);
         return back()->withStatus(__('Cliente creado con éxito.'));
     }
@@ -126,7 +135,7 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        $cliente->destroy($cliente->id);
+        $cliente->where('id', $cliente->id)->update(['state' => '0']);
         return back()->withStatus(__('Cliente eliminado con éxito.'));
     }
 

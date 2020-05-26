@@ -12,6 +12,6 @@ class Dependencia extends Model
     * @var array
     */
    protected $fillable = [
-       'name' ,'descripcion',
+       'name' ,'descripcion', 'state',
    ];
 }

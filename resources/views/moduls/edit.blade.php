@@ -94,7 +94,7 @@
                                                             data-style="btn btn-link" name="id_dependencias"
                                                             id="input-dependencia" value="{{ old('dependencias', $modulos[0]->id_dependencias) }}"
                                                             required>
-                                                            <option>{{ __('Seleccione una dependencia') }}</option>
+                                                            <option value="">{{ __('Seleccione una dependencia') }}</option>
                                                             @foreach ($dependencia as $item)
                                                             <option value="{{ $item->id }}" {{ $item->id == $modulos[0]->id_dependencias ? 'selected':'' }}>{{$item->name}}</option>
                                                             @endforeach

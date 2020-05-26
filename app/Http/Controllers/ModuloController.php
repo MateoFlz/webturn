@@ -22,6 +22,13 @@ class ModuloController extends Controller
         return view('moduls.index', compact('modulo'));
     }
 
+    public function print()
+    {
+        $modulo = Modulo::getmodulos();
+        $pdf = \PDF::loadView('moduls.reportmodulos', compact('modulo'));
+        return $pdf->download('Moludos.pdf');
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -43,9 +50,9 @@ class ModuloController extends Controller
     public function store(Request $request)
     {
 
-        //$this->validator($request->all())->validate();
+        $this->validator($request->all())->validate();
         $data = Modulo::userstatemodulo($request['iduser']);
-        if($data == 0){
+        if($data == 'false'){
             Modulo::create([
                 'name' => $request['caracteres'],
                 'id_dependencias' => $request['dependencia'],
@@ -64,8 +71,11 @@ class ModuloController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Modulo $modulo)
-    {
-        //
+    {   
+        $modulos = Modulo::getmodulosforid($modulo->id_users);
+        $dependencia = Dependencia::all();
+        return view('moduls.show', compact('modulos', 'dependencia'));
+
     }
 
     /**
@@ -126,10 +136,10 @@ class ModuloController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'caracteres' => ['required', 'string', 'max:3'],
-            'dependencia' => ['required',  'max:1'],
-            'iduser' => ['required', 'max:1'],
-            'idnameuser'=> ['required', 'string', 'max:3'],
+            "iduser" => ['required', 'numeric'],
+            'caracteres' => ['required', 'string'],
+            'dependencia' =>['required'],
+            'idnameuser' => ['required', 'string']
         ]);
     }
 }

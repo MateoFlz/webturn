@@ -93,7 +93,7 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Estado empleado') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('state') ? ' has-danger' : '' }}">
-                                        <select class="form-control" data-style="btn btn-link" name="state"
+                                        <select class="form-control selectpicker" data-style="btn btn-link" name="state"
                                             id="input-state" value="{{ old('state') }}" required>
                                             <option value="1" {{$users->state == '1' ? 'selected':''}}>Activo</option>
                                             <option value="0" {{$users->state == '0' ? 'selected':''}}>Inactivo</option>

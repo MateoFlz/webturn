@@ -19,6 +19,13 @@ class UserController extends Controller
         return view('users.index', ['users' => $model->paginate(15)]);
     }
 
+    public function print()
+    {
+        $users = User::all();
+        $pdf = \PDF::loadView('users.reportuser', compact('users'))->setPaper('a4');
+        return $pdf->download('Usuarios.pdf');
+
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -54,5 +61,17 @@ class UserController extends Controller
         $request = request()->all();
         $user->update($request);
         return back()->withStatus(__('Perfil actualizado con éxito.'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Cliente  $cliente
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
+        $user->where('id', $user->id)->update(['state' => '0']);
+        return back()->withStatus(__('Usuario eliminado con éxito.'));
     }
 }

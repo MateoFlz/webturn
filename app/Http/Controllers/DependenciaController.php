@@ -15,10 +15,17 @@ class DependenciaController extends Controller
      */
     public function index()
     {
-        $dependencia = Dependencia::all();
+        $dependencia = Dependencia::where('state', '1')->paginate(5);
         return view('dependences.index', compact('dependencia'));
     }
 
+    public function print()
+    {
+        $dependencia = Dependencia::all();
+        $pdf = \PDF::loadView('dependences.reportdependencia', compact('dependencia'));
+        return $pdf->download('Dependencias.pdf');
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +33,7 @@ class DependenciaController extends Controller
      */
     public function create()
     {
-        //
+        return view('dependences.create');
     }
 
     /**
@@ -41,6 +48,7 @@ class DependenciaController extends Controller
         Dependencia::create([
             'name' => $request['name'],
             'descripcion' => $request['descripcion'],
+            'state' => '1',
         ]);
         return back()->withStatus(__('Dependencia creada con éxito.'));
     }
@@ -53,7 +61,7 @@ class DependenciaController extends Controller
      */
     public function show(Dependencia $dependencia)
     {
-        //
+        return view('dependences.show', ['dependencia'=> $dependencia]);
     }
 
     /**
@@ -64,7 +72,8 @@ class DependenciaController extends Controller
      */
     public function edit(Dependencia $dependencia)
     {
-        //
+
+        return view('dependences.edit', ['dependencia'=> $dependencia]);
     }
 
     /**
@@ -76,7 +85,9 @@ class DependenciaController extends Controller
      */
     public function update(Request $request, Dependencia $dependencia)
     {
-        //
+        $request = request()->all();
+        $dependencia->update($request);
+        return back()->withStatus(__('Dependencia actualizada con éxito.'));
     }
 
     /**
@@ -87,7 +98,9 @@ class DependenciaController extends Controller
      */
     public function destroy(Dependencia $dependencia)
     {
-        //
+        $dependencia->where('id', $dependencia->id)->update(['state' => '0']);
+        return back()->withStatus(__('Dependencia eliminado con éxito.'));
+
     }
 
     /**

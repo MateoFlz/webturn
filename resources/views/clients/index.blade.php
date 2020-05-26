@@ -25,6 +25,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
+                                <a href=" {{ route('clientes.imprimir') }}" class="btn btn-sm">Imprimir cliente</a>
                                 <a href=" {{ route('clientes.authcreate') }}" class="btn btn-sm">Agregar cliente</a>
                             </div>
                         </div>
@@ -46,6 +47,9 @@
                                         </th>
                                         <th>
                                             Telefono
+                                        </th>
+                                        <th>
+                                            Estado
                                         </th>
                                         <th class="text-right">
                                             Acciones
@@ -70,6 +74,17 @@
                                     <td>
                                         {{$item->telefono}}
                                     </td>
+                                    <td>
+                                        @if($item->state == '1')
+                                        <div class="badge badge-primary text-wrap" style="width: 6rem;">
+                                            Activo
+                                        </div>
+                                        @else
+                                        <div class="badge badge-danger text-wrap" style="width: 6rem;">
+                                            Incativo
+                                        </div>
+                                        @endif
+                                    </td>
                                     <td class="td-actions text-right">
                                         <a rel="tooltip" class="btn btn-default btn-link" href=" {{ route('clientes.show', $item->id) }}"
                                             data-original-title="" title="">
@@ -83,7 +98,7 @@
                                         </a>
                                         <form action="{{ route('clientes.destroy', $item->id) }}" method="post" style="display: inline">
                                         @csrf
-                                        @method('delete')
+                                        @method('DELETE')
                                         <button rel="tooltip" class="btn btn-danger btn-link" type="submit"
                                             data-original-title="" title="">
                                             <i class="material-icons">close</i>
@@ -96,6 +111,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            {{$cliente->links()}}
                         </div>
                     </div>
                 </div>

@@ -13,9 +13,22 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 text-right">
+                                <a href=" {{ route('modulo.imprimir') }}" class="btn btn-sm">Imprimir modulo</a>
                                 <a href=" {{ route('modulo.create') }}" class="btn btn-sm">Agregar Modulo</a>
                             </div>
                         </div>
+                        @if (session('status'))
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                        <span>{{ session('status') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="text-center">
@@ -47,7 +60,6 @@
                                         <div class="badge badge-primary text-wrap" style="width: 6rem; font-size: 15px;">
                                             {{$item->name}}
                                         </div>
-
                                     </td>
                                     <td class="text-center">
                                         {{$item->namedependencia}}
@@ -56,7 +68,7 @@
                                         {{$item->username}}
                                     </td>
                                     <td class="td-actions text-right">
-                                        <a rel="tooltip" class="btn btn-default btn-link" href="{{ route('user.show', $item->id) }}"
+                                        <a rel="tooltip" class="btn btn-default btn-link" href="{{ route('modulo.show', $item->id) }}"
                                             data-original-title="" title="">
                                             <i class="material-icons">remove_red_eye</i>
                                             <div class="ripple-container"></div>

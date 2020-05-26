@@ -17,7 +17,6 @@
                             @include('layouts.page_templates.message')
                             @if (session('status'))
                             <div class="row">
-
                                 <div class="col-sm-12">
                                     <div class="alert alert-success">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -74,10 +73,10 @@
                                                     <p class="card-category"><span class="text-success"></span>Realice
                                                         la busqueda por el nombre de empelado</p>
                                                     <div class="form-group">
-                                                        <input id="idnameuser" id="idnameuser" value=" {{ old('idnameuser') }}" class="border rounded"
+                                                        <input id="idnameuser" name="idnameuser" value="{{ old('idnameuser') }}" class="border rounded"
                                                             type="text"
                                                             style="height: 2rem; width: 100%"
-                                                            required>
+                                                            onkeyup="mayus(this)" required>
                                                         <input type="hidden" id="cc" name="iduser">
                                                         <div id="resultuser">
                                                         </div>
@@ -94,7 +93,7 @@
                                                             data-style="btn btn-link" name="dependencia"
                                                             id="input-dependencia" value="{{ old('dependencia') }}"
                                                             required>
-                                                            <option>{{ __('Seleccione una dependencia') }}</option>
+                                                            <option value="">Selecciona una opcion</option>
                                                             @foreach ($dependencia as $item)
                                                             <option value="{{ $item->id }}">{{$item->name}}</option>
                                                             @endforeach

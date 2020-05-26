@@ -87,6 +87,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Estado cliente') }}</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group{{ $errors->has('state') ? ' has-danger' : '' }}">
+                                        <select class="form-control selectpicker" data-style="btn btn-link" name="state"
+                                            id="input-state" value="{{ old('state') }}" required>
+                                            <option value="1" {{$clientes->state == '1' ? 'selected':''}}>Activo</option>
+                                            <option value="0" {{$clientes->state == '0' ? 'selected':''}}>Inactivo</option>
+                                        </select>
+                                        @if ($errors->has('state'))
+                                        <span id="state" class="error text-danger"
+                                            for="input-state">{{ $errors->first('state') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer ml-auto mr-auto">
                             <button type="submit" class="btn btn-success">{{ __('Guardar cliente') }}</button>

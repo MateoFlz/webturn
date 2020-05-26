@@ -12,10 +12,23 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12 text-right">
+                            <div class="col text-right">
+                                <a href=" {{ route('user.imprimir') }}" class="btn btn-sm">Imprimir todo</a>
                                 <a href=" {{ route('profile.index') }}" class="btn btn-sm">Agregar empleado</a>
                             </div>
                         </div>
+                        @if (session('status'))
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                        <span>{{ session('status') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
@@ -91,16 +104,20 @@
                                             <i class="material-icons">edit</i>
                                             <div class="ripple-container"></div>
                                         </a>
-                                        <a rel="tooltip" class="btn btn-danger btn-link" href="#"
-                                            data-original-title="" title="">
-                                            <i class="material-icons">close</i>
-                                            <div class="ripple-container"></div>
-                                        </a>
+                                        <form action="{{ route('user.destroy', $item->id) }}" method="post" style="display: inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-link">
+                                                <i class="material-icons">close</i>
+                                                <div class="ripple-container"></div>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
                                 </tbody>
                             </table>
+                         
                         </div>
                     </div>
                 </div>

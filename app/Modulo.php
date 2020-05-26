@@ -31,9 +31,9 @@ class Modulo extends Model
         {
            $response = $query->where('id_users', $id)->where('state', '1')->get();
            if(count($response) > 0){
-               return 1;
+               return 'true';
            }
-           return 0;
+           return 'false';
         }
 
     }

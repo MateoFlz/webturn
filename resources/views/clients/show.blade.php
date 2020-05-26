@@ -33,7 +33,7 @@
                                         <input class="form-control{{ $errors->has('cedula') ? ' is-invalid' : '' }}"
                                             name="cedula" id="input-cedula" type="number"
                                             placeholder="{{ __('Numero de cédula') }}" value="{{  $clientes->cedula }}"
-                                            required="true" aria-required="true" />
+                                            required="true" aria-required="true" disabled />
                                         @if ($errors->has('cedula'))
                                         <span id="cedula-error" class="error text-danger"
                                             for="input-name">{{ $errors->first('cedula') }}</span>
@@ -48,7 +48,7 @@
                                         <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                             name="name" id="input-name" type="text"
                                             placeholder="{{ __('Nombre completo') }}" value="{{  $clientes->name }}"
-                                            required="true" aria-required="true" />
+                                            required="true" aria-required="true" disabled />
                                         @if ($errors->has('name'))
                                         <span id="name-error" class="error text-danger"
                                             for="input-name">{{ $errors->first('name') }}</span>
@@ -64,7 +64,7 @@
                                         <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                             name="email" id="input-email" type="email"
                                             placeholder="{{ __('Dirección de correo electronico') }}"
-                                            value="{{ $clientes->email }}" required />
+                                            value="{{ $clientes->email }}" required disabled />
                                         @if ($errors->has('email'))
                                         <span id="email-error" class="error text-danger"
                                             for="input-email">{{ $errors->first('email') }}</span>
@@ -79,7 +79,7 @@
                                         <input class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}"
                                             name="telefono" id="input-telefono" type="number"
                                             placeholder="{{ __('Telefono') }}" value="{{ $clientes->telefono }}"
-                                            required />
+                                            required disabled />
                                         @if ($errors->has('telefono'))
                                         <span id="telefono-error" class="error text-danger"
                                             for="input-telefono">{{ $errors->first('telefono') }}</span>

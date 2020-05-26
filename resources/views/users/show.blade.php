@@ -14,13 +14,13 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Numero de cédula') }}</label>
+                                <label class="col-sm-2 col-form-label ">{{ __('Numero de cédula') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('cedula') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('cedula') ? ' is-invalid' : '' }}"
                                             name="cedula" id="input-cedula" type="number"
                                             placeholder="{{ __('Numero de cédula') }}" value="{{ $users->cedula }}"
-                                            required="true" aria-required="true" />
+                                            required="true" aria-required="true" disabled />
                                         @if ($errors->has('cedula'))
                                         <span id="cedula-error" class="error text-danger"
                                             for="input-name">{{ $errors->first('cedula') }}</span>
@@ -35,7 +35,7 @@
                                         <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                             name="name" id="input-name" type="text"
                                             placeholder="{{ __('Nombre completo') }}" value="{{ $users->name }}"
-                                            required="true" aria-required="true" />
+                                            required="true" aria-required="true" disabled>
                                         @if ($errors->has('name'))
                                         <span id="name-error" class="error text-danger"
                                             for="input-name">{{ $errors->first('name') }}</span>
@@ -51,7 +51,7 @@
                                         <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                             name="email" id="input-email" type="email"
                                             placeholder="{{ __('Dirección de correo electronico') }}"
-                                            value="{{ $users->email }}" required />
+                                            value="{{ $users->email }}" required disabled>
                                         @if ($errors->has('email'))
                                         <span id="email-error" class="error text-danger"
                                             for="input-email">{{ $errors->first('email') }}</span>
@@ -63,8 +63,8 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Rol de usuario') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('id_rol') ? ' has-danger' : '' }}">
-                                        <select class="form-control selectpicker" data-style="btn btn-link" name="id_rol"
-                                            id="input-id_rol" value="{{ $users->id_rol }}" required>
+                                        <select class="form-control selectpicker disabled" data-style="btn btn-link" name="id_rol"
+                                            id="input-id_rol" value="{{ $users->id_rol }}" required disabled>
                                             <option>{{ __('Seleccione tipo de usuario') }}</option>
                                             @foreach ($id_rol as $item)
                                             <option value="{{ $item->id }}" {{$users->id_rol == $item->id ? 'selected': ''}}>

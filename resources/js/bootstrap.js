@@ -45,6 +45,83 @@ let channel = window.Echo.channel('user-channel');
     {
         console.log(data);
 });
+
+let channel2 = window.Echo.channel('channel-turn');
+        channel2.listen('.EventTurn', function(data)
+        {
+
+            let valuemodulo = document.getElementById("idmodulo").value;
+            let templete = "";
+            if(data.turno.length > 0){
+                data.turno.forEach((elemt) => {
+                    templete += `
+                    <div class="border d-flex align-items-start rounded" style="margin: 10px;">
+                        <div class="col-md-10 mibackgroun border rounded" style="margin: 5px; cursor:pointer">
+                            <span class="text-left"><strong>Nombre:</strong>${elemt.name}</span><br>
+                            <span class="text-left"><strong>Cedula:</strong>${elemt.cedula}</span>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true">
+                                <i class="material-icons">settings</i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#" onclick="document.getElementById('formllamar${elemt.id}').submit();">Llamar cliente</a>
+                                <form id="formllamar${elemt.id}" action="http://127.0.0.1:8000/atencion/${elemt.id}" method="post">
+                                    <input type="hidden" name="_token" value="8U23CFUqMiAbnS4xIzscavM77tQpXU5Q0RvxvUDD">
+                                    <input type="hidden" name="llamado" value="1">
+                                    <input type="hidden" name="modulo" value="`+valuemodulo+`">
+                                </form>
+                                <a class="dropdown-item" href="#">Tranferir</a>
+                                <a class="dropdown-item" href="clientes/${elemt.idclient}/editar">Editar</a>
+                                <a class="dropdown-item" href="#">Terminar</a>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                });
+                $("#listurn").html(templete);
+            }else{
+
+            }
+            //$("#listurn").html(templete);
+        });
+
+let channel3 = window.Echo.channel('channel-list');
+    channel3.listen('.EventList', function(data)
+    {
+        let templete = "";
+            if(data.list.data.length > 0){
+                data.list.data.forEach((elemt) => {
+                    templete += `
+                    <div class="col-md-12">
+                        <div class="alert shadow bg-light border">
+                            <div class="row">
+                            <div class="col-12 d-flex align-items-center">
+                                <div class="col-md-3 badge badge-success">
+                                    <h1><strong>${elemt.namemodulo}</strong></h1>
+                                </div>
+                                <div class="col-md-9">
+                                    <h2><strong>${elemt.namecliente}</strong></h2>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>`;
+                    console.log(data.list.data[0].namecliente);
+                    console.log(elemt.namecliente);
+                    if( data.list.data[0].namecliente == elemt.namecliente){
+                        speechSynthesis.speak(new SpeechSynthesisUtterance(elemt.namecliente));
+                        speechSynthesis.speak(new SpeechSynthesisUtterance("MODULO"));
+                        speechSynthesis.speak(new SpeechSynthesisUtterance(elemt.namemodulo));
+                    }
+                });
+                $("#listturnos").html(templete);
+            }else{
+
+            }
+
+    });
+
 // import Echo from 'laravel-echo';
 
 // window.Pusher = require('pusher-js');

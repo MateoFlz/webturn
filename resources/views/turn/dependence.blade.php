@@ -13,9 +13,9 @@
                             @foreach($dependencia as $item)
                             <div class="col-md-5" onclick="document.getElementById('form-turn{{$item->id}}').submit();">
                                 <div class="card" id="divs" style="cursor: pointer">
-                                    <div class="card-header card-header-icon card-header-rose">
+                                    <div class="card-header card-header-icon card-header-success">
                                         <div class="card-icon">
-                                            <i class="material-icons">language</i>
+                                            <i class="material-icons">receipt</i>
                                         </div>
                                     </div>
                                     <div class="card-body">
