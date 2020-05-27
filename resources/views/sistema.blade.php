@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'Turnero', 'activePage' => '', 'titlePage' => __('Bienvenido a sistema de turnos')])
+@extends('layouts.app', ['class' => 'Turnero', 'activePage' => 'sistema', 'titlePage' => __('Bienvenido a sistema de turnos')])
 @section('content')
 <div id="app" >
     <div class="row justify-content-center pt-2" >

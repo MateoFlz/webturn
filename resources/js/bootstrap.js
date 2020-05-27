@@ -71,9 +71,7 @@ let channel2 = window.Echo.channel('channel-turn');
                                     <input type="hidden" name="llamado" value="1">
                                     <input type="hidden" name="modulo" value="`+valuemodulo+`">
                                 </form>
-                                <a class="dropdown-item" href="#">Tranferir</a>
                                 <a class="dropdown-item" href="clientes/${elemt.idclient}/editar">Editar</a>
-                                <a class="dropdown-item" href="#">Terminar</a>
                             </div>
                         </div>
                     </div>

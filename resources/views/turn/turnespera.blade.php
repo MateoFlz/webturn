@@ -198,11 +198,9 @@
                                                 <input type="hidden" name="llamado" value="1">
                                                 <input type="hidden" name="modulo" value="{{ $modulos[0]->id }}">
                                             </form>
-                                            <a class="dropdown-item" href="#" data-toggle="modal"
-                                                data-target="#staticBackdrop{{$item->id}}">Tranferir</a>
                                             <a class="dropdown-item"
                                                 href="{{ route('clientes.edit', $item->idclient) }}">Editar</a>
-                                            <a class="dropdown-item" href="#">Terminar</a>
+
                                         </div>
                                     </div>
                                 </div>

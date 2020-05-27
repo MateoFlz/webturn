@@ -17,6 +17,11 @@
             <i class="material-icons">person_add</i> {{ __('Registrar') }}
           </a>
         </li>
+        <li class="nav-item{{ $activePage == 'sistema' ? ' active' : '' }}">
+          <a href="{{ route('sistema') }}" class="nav-link text-dark">
+            <i class="material-icons">surround_sound</i> {{ __('Sistema') }}
+          </a>
+        </li>
         <li class="nav-item{{ $activePage == 'login' ? ' active' : '' }}">
           <a href="{{ route('login') }}" class="nav-link text-dark">
             <i class="material-icons">fingerprint</i> {{ __('Ingresar') }}
